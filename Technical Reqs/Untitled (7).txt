@@ -1,0 +1,81 @@
+title BuyQawHub
+
+
+participant TCPServer
+participant MobileApp
+participant Controller
+fontawesome f2c6 Outside #1da1f2
+fontawesome f187 AppStore #1da102
+
+loop Door opening
+MobileApp-->Controller: Advertize BLE peripheral
+note over MobileApp: Characteristics of \nthe ble peripheral is:\n1. Service UUID = "BA10"\n2. CHECK_UUID = "BA52" Checking [WRITE]\n3. PASSWD_PORT_UUID = "BA44" Enter password [NOTIFY]\n4. ADMIN_PORT_UUID = "BA13" Admin settings [NOTIFY]\n5. ACTION_PORT_UUID = "BA87" Give order [NOTIFY]\n6. INCOMING_PORT_UUID = "BA76" Input for controller [WRITE]\n7. FILLER_0 = "BA66" Non coding filler [NOTIFY]\n8. FILLER_1 = "BA91" Non coding filler [NOTIFY]\n9. FILLER_2 = "BA01" Non coding filler [NOTIFY]\n10. FILLER_3 = "BA28" Non coding filler [NOTIFY]
+Controller-->MobileApp: Connect
+note left of Controller: When user is near door with\ncontoller, controller connects\nto ble peripheral in mobile\napp and sends mac address\nto it in form:\n80:e6:50:02:a3:9a 
+Controller->MobileApp: Write to CHECK_UUID:\n 80:e6:50:02:a3:9a
+MobileApp->MobileApp: Check local storage
+alt No password in local storage
+MobileApp->TCPServer: a/?56303h43;80:e6:50:02:a3:9a;
+note left of MobileApp: 1. a/? - control letter, means\n"Asking password"\n2.56303h43 - id of user, given\nat registration\n3. 80:e6:50:02:a3:9a - MAC \nadress of Controller
+TCPServer->MobileApp: a/123456;1555666261;
+note right of TCPServer: 1. a/ - control letter, means\n"Answer is"\n2.123456 - password\n3. 1555666261 - Timestamp\nof time to live of this password
+alt No access
+TCPServer->MobileApp: a/0;0;
+MobileApp->TCPServer: a/!0;0;
+end
+end
+MobileApp->Controller:PASSWD_PORT_UUID as NOTIFY:\n123456
+Controller->MobileApp: INCOMING_PORT_UUID:\n1
+opt Password change
+MobileApp->TCPServer:e/?80:e6:50:02:a3:9a
+TCPServer->MobileApp:e/654321
+alt No change
+TCPServer->MobileApp:e/!
+MobileApp->TCPServer:e/!
+end
+MobileApp->Controller:ADMIN_PORT_UUID as NOTIFY:\n654321
+Controller->MobileApp:INCOMING_PORT_UUID:\n654321
+end
+MobileApp->Controller: ACTION_PORT_UUID as NOTIFY:\n1\n[It means open the door]
+Controller->MobileApp:INCOMING_PORT_UUID:\n1\n[Done]
+Controller-->MobileApp: Disconnect
+MobileApp->TCPServer:a/!56303h43;80:e6:50:02:a3:9a;1555666261;
+note left of MobileApp: 1. a/! - control letter\n2. 56303h43 - ID of user\n3. 80:e6:50:02:a3:9a - MAC adress\nof Controller\n4. 1555666261 - Timestamp, when\nuser opened door
+TCPServer->MobileApp:a/!
+end
+
+opt User registration
+MobileApp->TCPServer: Verification code:\nv/GG89#!tgh77
+TCPServer->MobileApp: User ID:\nv/56303h43
+alt Bad verification code
+TCPServer->MobileApp: v/0
+end 
+MobileApp->TCPServer: Form details from Sign Up page:\nr/56303h43;name and surname;phone;position;dep;company;
+TCPServer->MobileApp: List of buildings and enters:\nr/[{name: "Зеленый Квартал", id: "5544332211",picture: "link"\nenter: [{name: "1A", ttl: "1555666261", key: "123456", picture: "link"}]}]
+end
+opt Profile update
+MobileApp->TCPServer:Data from form in Profile page:\nr/56303h43;name and surname;phone;position;dep;company;
+TCPServer->MobileApp:Ok, wait for answer in messages box:\nr/!
+end
+opt Messages
+MobileApp->TCPServer:Every 15 minutes:\nm/?
+TCPServer->MobileApp:If no messages:\nm/0\nIf any:\nm/utf-8 font awesome icon;hex color;title;full text;
+alt Profile change message
+TCPServer->MobileApp: New profile data:\nr/56303h43;name and surname;phone;position;dep;company;\n[{name: "Зеленый Квартал", id: "5544332211",picture: "link"\nenter: [{name: "1A", ttl: "1555666261", key: "123456", picture: "link"}]}]
+end
+end
+opt Invite Guest
+MobileApp->TCPServer: Data from Invite Guest page:\ng/?56303h43;[{id: "5544332211", enter: [{name: "1A"}]}]; ttl:"1555666261"
+TCPServer->MobileApp: Verification code:\n2178969124hn#123
+MobileApp->Outside: Share by deep link:\nbuyqawhub:/ /2178969124hn#123
+end
+opt Be Guest
+Outside->MobileApp: Deep link with verification code
+MobileApp->TCPServer: g/!56303h43;2178969124hn#123;
+TCPServer->MobileApp: r/56303h43;name and surname;phone;position;dep;company;\n[{name: "Зеленый Квартал", id: "5544332211",picture: "link"\nenter: [{name: "1A", ttl: "1555666261", key: "123456", picture: "link"}]}]
+alt App is not installed
+Outside->AppStore: Install mobile app
+AppStore->MobileApp: Put verification code
+ref over MobileApp: Registration process
+end
+end
