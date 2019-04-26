@@ -328,6 +328,7 @@ end
 end
 ```
 
+
 # Useful links
 1. [BLE peripheral cordova plugin](https://github.com/don/cordova-plugin-ble-peripheral)
 2. [How BLE works](https://www.mikroe.com/blog/bluetooth-low-energy-part-1-introduction-ble)
