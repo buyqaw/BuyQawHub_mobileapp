@@ -1,0 +1,4 @@
+/*! VolunteerRescue | (c) 2012 - 2018 SKRPC Holdings, Inc. 
+ * http://volunteerrescue.org/app_license
+ */
+;$("#meAA_page").on("pageshow",function(){vr_device.googleAnalytics();$("img#meAA_online").attr("src",(g_onLine==true?g_basePath+"images/online.png":g_basePath+"images/offline.png"));volunteerRescue.callAPI(volunteerRescue.currentSite,"me_asset","Retrieving allocated assets...",function(d){var c=$("#meAA_lstAsset");var a;$(c).empty();if(d.asset.length>0){for(var b in d.asset){a=$("<li>").append("<div>");a.append($("<div>").text("Asset number: "+d.asset[b].assetNumber)).append($("<div>").text("Date allocated: "+d.asset[b].allocatedAt));$(c).append($("<li>",{"data-role":"list-divider","data-theme":"b"}).text(d.asset[b].description)).append(a)}}else{$(c).append("<li>No assets have been allocated to you.</li>")}$(c).listview("refresh")})});

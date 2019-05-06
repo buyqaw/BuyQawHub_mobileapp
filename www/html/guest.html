@@ -1,10 +1,12 @@
 <html>
     <head>
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="../css/common.css">
+        <script src="../js/jquery-2.1.0.min.js"></script>
+        <script src="../js/app.js"></script>
         <title>Guest</title>
     </head>
     <body class = "body">
@@ -14,22 +16,22 @@
             <div style="margin-left:10%;margin-right:10%;" >
                 <div class="form-row">
                     <img src="../img/7.png" class="form-row-img"/> 
-                    <input type="text" class="form-row-input" placeholder="Choose building"/>
+                    <input id="guest-building" type="text" class="form-row-input" placeholder="Choose building"/>
                     <img src="../img/10.png" class="form-row-download"/>
                 </div>
                 <div class="form-row">
                     <img src="../img/8.png" class="form-row-img"/>
-                    <input type = "text" class="form-row-input" placeholder="Choose zones(default all)"/>
+                    <input id="guest-zone" type = "text" class="form-row-input" placeholder="Choose zones(default all)"/>
                     <img src="../img/10.png" class="form-row-download"/>
                 </div>
                 <div class="form-row">
                     <img src="../img/9.png" class="form-row-img"/>
-                    <input type = "text" class="form-row-input" placeholder="How long?(default day)"/>
+                    <input id="guest-time" type = "text" class="form-row-input" placeholder="How long?(default day)"/>
                     <img src="../img/10.png" class="form-row-download"/>
                 </div>
             </div>
             <div style = "margin-top:30%">
-                <p type = "button" class = "button-general">SAVE</p>    
+                <p id="guest-button" type = "button" class = "button-general">SAVE</p>    
             <div>
             
         </div>

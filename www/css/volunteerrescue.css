@@ -1,0 +1,212 @@
+/*! VolunteerRescue | (c) 2012 - 2018 SKRPC Holdings, Inc. 
+ * http://volunteerrescue.org/app_license
+ */
+
+:invalid {
+  background-color: #ffffff;
+}
+
+.vr-field-required {
+  border-color: #800000;
+  border-width: 3px;
+}
+
+
+.custom-dash-center{width:-webkit-fill-available; padding-left: 1.5em; height: 12%}
+.custom-dash-left {align-self: left;}
+.custom-dash-right{align-self: right;}
+
+
+.vr-field-help-center {font-size: 0.75em; padding-bottom: 0.5em; text-align: center; }
+.vr-field-help-left {padding-bottom: 0.5em; text-align: left; }
+.vr-field-help-right {padding-bottom: 0.5em; text-align: right; }
+
+.vr-field-help { font-size: 0.75em; padding-bottom: 0.5em; }
+
+.vr-listview-extras { font-size: 0.75em; font-weight: normal; padding-top: 0.25em; white-space: normal; }
+
+#rSF_page table,
+#manPE_page table,
+.stPRH_table,
+.vr-table {
+  border-collapse:collapse;
+  border: 1px solid black;
+}
+
+.stPRH_table,
+.vr-table {
+  font-size: 0.8em;
+}
+
+#rSF_page table th,
+#rSF_page table td,
+#manPE_page table th,
+#manPE_page table td,
+.stPRH_table th,
+.stPRH_table td,
+.vr-table th,
+.vr-table td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+.vr-collapsible-first-no-inset {
+  font-size: 1em;
+  margin-top:-15px !important;
+}
+
+.vr-listview-no-inset {
+  margin:1em -15px !important;
+}
+
+.vr-cell-highest {
+  color: red;
+  font-weight: bold;
+}
+
+.vr-field-time-part {
+  float: left;
+  width: 5em;
+}
+
+label.vr-field-time-part {
+  overflow:visible;
+  padding-left:0.25em;
+  padding-top:0.75em;
+  position:relative !important;
+  width:0.5em;
+}
+
+.controlgroup-textinput {
+    padding-top:.22em;
+    padding-bottom:.22em;
+}
+
+#mTVMDC_page .ui-slider {
+  margin-left:1em !important;
+  width: 8em;
+}
+
+.nav-glyphish .ui-btn .ui-btn-inner { padding-top: 30px !important; padding-bottom: 0 !important; }
+.nav-glyphish .ui-btn .ui-icon { width: 40px!important; height: 20px!important; margin-left: -20px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
+
+.ui-icon-g-extras:after { background:  url(../images/40-dialpad-gray.png) 50% 50% no-repeat; background-size: 20px 20px; }
+.ui-icon-g-dashboard:after { background:  url(../images/81-dashboard-gray.png) 50% 50% no-repeat; background-size: 20px 20px; }
+.ui-icon-g-kitlist:after { background:  url(../images/179-notepad-gray.png) 50% 50% no-repeat; background-size: 16px 20px; }
+.ui-icon-g-map:after { background:  url(../images/103-map-gray.png) 50% 50% no-repeat; background-size: 24px 20px; }
+.ui-icon-g-search:after { background:  url(../images/246-route-gray.png) 50% 50% no-repeat; background-size: 24px 20px; }
+
+.ui-icon-w-extras:after { background:  url(../images/40-dialpad.png) 50% 50% no-repeat; background-size: 20px 20px; }
+.ui-icon-w-dashboard:after { background:  url(../images/81-dashboard.png) 50% 50% no-repeat; background-size: 20px 20px; }
+.ui-icon-w-kitlist:after { background:  url(../images/179-notepad.png) 50% 50% no-repeat; background-size: 16px 20px; }
+.ui-icon-w-map:after { background:  url(../images/103-map.png) 50% 50% no-repeat; background-size: 24px 20px; }
+.ui-icon-w-search:after { background:  url(../images/246-route.png) 50% 50% no-repeat; background-size: 24px 20px; }
+
+.ui-icon-correct:after { background:  url(../images/correct-32.png) 50% 50% no-repeat; background-size: 24px 24px; }
+.ui-icon-incorrect:after { background:  url(../images/incorrect-32.png) 50% 50% no-repeat; background-size: 24px 24px; }
+
+.ui-footer .ui-btn-inner { font-size: 11px; }
+
+/* Red buttons */
+/* Button up */
+html .ui-body-a .ui-btn.ui-btn-r,
+.ui-page-theme-a .ui-btn.ui-btn-r,
+.ui-page-theme-b .ui-btn.ui-btn-r,
+.ui-btn.ui-btn-r,
+/* Button visited */
+html .ui-body-a .ui-btn.ui-btn-r:visited,
+.ui-page-theme-a .ui-btn.ui-btn-r:visited,
+.ui-page-theme-b .ui-btn.ui-btn-r:visited,
+.ui-btn.ui-btn-r:visited {
+	background: #ab2525 /*{c-bup-background-color}*/;
+	border-color: #711414 /*{c-bup-border}*/;
+	color: white /*{c-bup-color}*/;
+	text-shadow: 0 /*{c-bup-shadow-x}*/ 1px /*{c-bup-shadow-y}*/ 0 /*{c-bup-shadow-radius}*/ #711414 /*{c-bup-shadow-color}*/;
+}
+/* Button hover */
+html .ui-body-a .ui-btn.ui-btn-r:hover,
+.ui-page-theme-a .ui-btn.ui-btn-r:hover,
+.ui-page-theme-b .ui-btn.ui-btn-r:hover,
+.ui-btn.ui-btn-r:hover {
+	background: #b54a4a /*{c-bhover-background-color}*/;
+	border-color: #6e0000 /*{c-bhover-border}*/;
+	color: whiote /*{c-bhover-color}*/;
+	text-shadow: 0 /*{c-bhover-shadow-x}*/ 1px /*{c-bhover-shadow-y}*/ 0 /*{c-bhover-shadow-radius}*/ #690101 /*{c-bhover-shadow-color}*/;
+}
+/* Button down */
+html .ui-body-a .ui-btn.ui-btn-r:active,
+.ui-page-theme-a .ui-btn.ui-btn-r:active,
+.ui-page-theme-b .ui-btn.ui-btn-r:active,
+.ui-btn.ui-btn-r:active {
+	background: #c44f4f /*{c-bdown-background-color}*/;
+	border-color: #782323 /*{c-bdown-border}*/;
+	color: white /*{c-bdown-color}*/;
+	text-shadow: 0 /*{c-bdown-shadow-x}*/ 1px /*{c-bdown-shadow-y}*/ 0 /*{c-bdown-shadow-radius}*/ #782323 /*{c-bdown-shadow-color}*/;
+}
+
+/* Green buttons */
+/* Button up */
+html .ui-body-a .ui-btn.ui-btn-g,
+.ui-page-theme-a .ui-btn.ui-btn-g,
+.ui-page-theme-b .ui-btn.ui-btn-g,
+.ui-btn.ui-btn-g,
+/* Button visited */
+html .ui-body-a .ui-btn.ui-btn-g:visited,
+.ui-page-theme-a .ui-btn.ui-btn-g:visited,
+.ui-page-theme-b .ui-btn.ui-btn-g:visited,
+.ui-btn.ui-btn-g:visited {
+	background: #019901 /*{d-bup-background-color}*/;
+	border-color: #006b00 /*{d-bup-border}*/;
+	color: white /*{d-bup-color}*/;
+	text-shadow: 0 /*{d-bup-shadow-x}*/ 1px /*{d-bup-shadow-y}*/ 0 /*{d-bup-shadow-radius}*/ #006b00 /*{d-bup-shadow-color}*/;
+}
+/* Button hover */
+html .ui-body-a .ui-btn.ui-btn-g:hover,
+.ui-page-theme-a .ui-btn.ui-btn-g:hover,
+.ui-page-theme-b .ui-btn.ui-btn-g:hover,
+.ui-btn.ui-btn-g:hover {
+	background: #00bf00 /*{d-bhover-background-color}*/;
+	border-color: #006b00 /*{d-bhover-border}*/;
+	color: white /*{d-bhover-color}*/;
+	text-shadow: 0 /*{d-bhover-shadow-x}*/ 1px /*{d-bhover-shadow-y}*/ 0 /*{d-bhover-shadow-radius}*/ #00592b /*{d-bhover-shadow-color}*/;
+}
+/* Button down */
+html .ui-body-a .ui-btn.ui-btn-g:active,
+.ui-page-theme-a .ui-btn.ui-btn-g:active,
+.ui-page-theme-b .ui-btn.ui-btn-g:active,
+.ui-btn.ui-btn-g:active {
+	background: #006b00 /*{d-bdown-background-color}*/;
+	border-color: #006b00 /*{d-bdown-border}*/;
+	color: white /*{d-bdown-color}*/;
+	text-shadow: 0 /*{d-bdown-shadow-x}*/ 1px /*{d-bdown-shadow-y}*/ 0 /*{d-bdown-shadow-radius}*/ #00592b /*{d-bdown-shadow-color}*/;
+}
+
+/* Change buttons in lists to normal font-weight anf white background */
+
+.ui-content ul li a.ui-btn,
+.ui-content ul li a.ui-btn:visited,
+.ui-content ul li a.ui-btn:focus,
+.ui-content ul li a.ui-btn:hover,
+.ui-content ul li a.ui-btn:active {
+  font-weight: 400;
+  background: white;
+  border-color:#ddd;
+  box-shadow:0 0px;
+  text-shadow: none;
+  color:#333;
+  -webkit-box-shadow:0 0px;
+}
+
+/* Reset page-theme a normal button pressed values after above tweak */
+
+.ui-content ul li a.ui-btn.ui-btn-active {
+  font-weight: 700;
+  text-shadow:0 1px 0 #059;
+  background-color:#38c;
+  border-color:#38c;
+  color:#fff;
+}
+
+.ui-content-center {
+  align-self: center;
+}

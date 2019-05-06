@@ -1,0 +1,4 @@
+/*! VolunteerRescue | (c) 2012 - 2018 SKRPC Holdings, Inc. 
+ * http://volunteerrescue.org/app_license
+ */
+;var meUAI_saveClickHandler=function(a){volunteerRescue.callAPI(volunteerRescue.currentSite,"me_unavailability_immediate","Saving...",function(b){window.history.back()},null,null,{type:"PUT",data:{startTime:$("#meUAI_startTime").val(),duration:$("#meUAI_duration").val()}});return false};$("#meUAI_page").on("pageshow",function(){vr_device.googleAnalytics();$("img#meUAI_online").attr("src",(g_onLine==true?g_basePath+"images/online.png":g_basePath+"images/offline.png"));$("#meUAI_startTime").val(volunteerRescue.currentTime());$("#meUAI_submitForm").off("click",meUAI_saveClickHandler).on("click",meUAI_saveClickHandler);$("#meUAI_form").submit(meUAI_saveClickHandler)});$(document).on("pagecreate create",volunteerRescue.setDateFields);

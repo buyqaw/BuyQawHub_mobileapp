@@ -1,87 +1,146 @@
 <html>
-    <head>
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <title>Message</title>
-        <link rel="stylesheet" type="text/css" href="../css/common.css">
-    </head>
-    <body class = "body" style = "margin:0px">
-        <div class="enabled" style = "width:100%; height:100%;margin:0px">
-            <img src="../img/home-header.png" style = "width:100%"></img>
-            <img src="../img/menu.png" style = "cursor:pointer;position:absolute;right:5%;top:12%;width:9%;"></img>
-            <div style = "width:100%; height:80%;background:rgb(54,54,54);">
-                <div style = "border-bottom-style: solid;display: flex; border-bottom-width: 1.5px; border-bottom-color: gray">
-                    <div style="width: 30%"></div>
-                    <div style="width: 40%">
-                        <p class="header-title">Messages</p>
-                    </div>
-                    <div style="width: 30%;position: relative;">
-                        <span class="header-small-title">CLEAR ALL</span>
-                    </div>
+<head>
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Message</title>
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+</head>
+<body class = "body" style = "margin:0px">
+<div id="message-detail" style="display:none;position:absolute;bottom:0;z-index:100;background:black;opacity:0.8;width:100%;height: 100%">
+    <div class="message-red-detail" style = "position:absolute;top:1%">
+        <div style="padding: 40px 15px 0px 15px">
+            <img src="../img/message-red-0.png" style="width: 60px;">
+        </div>
+        <div style="width: 100%;padding:20px">
+            <div style="color: white;font-size: 23px;height: 80px">
+                You did something wrong, so I am going to punish you
+            </div>
+            <div style="display: flex;padding-top: 10px">
+                <img src="../img/message-red-1.png" style="width: 20px;height: 20px">
+                <span style="font-size: 15px;color: white;padding-left: 10px">three days ago</span>
+            </div>
+        </div>
+        <div style="padding: 45px 20px 0px 10px">
+            <img id="messages-red-detail-close" src="../img/message-red-2.png" style="width: 45px;">
+        </div>
+    </div>
+</div>
+<div id="menutop" style="display:none;z-index:1111;position:absolute;width:100%;height:100%">
+    <div style="position:absolute;bottom:0;z-index:100;background:black;opacity:0.8;width:100%;height: 100%">
+        <div style="position:absolute;bottom:.8%;z-index:100;background:rgb(54,54,54);width:95%;border-radius: 2rem; margin-left:2.5%;margin-right:2.5%">
+            <div style= "border-bottom-style: solid; border-bottom-width: 1.5px; border-bottom-color: gray">
+                <h1 class="menu-h">MENU</h1>
+                <img id="menutop-close" src="../img/11.png" style="position:absolute;cursor:pointer;right:9%;top:8%;width:9%;">
+            </div>
+            <div id="menu-messages" style="cursor:pointer;padding: 3%">
+                <img src="../img/12.png" class="menu-img">
+                <div style="margin-left: 15%">
+                    <p class="menu-h1">Messagges</h1>
+                    <p class="menu-h4">You have  three unlread images</h4>
                 </div>
-                <div>
-                    <div class="message-red">
-                        <div style="padding: 40px 15px 0px 15px">
-                            <img src="../img/message-red-0.png" style="width: 60px;">
-                        </div>
-                        <div style="width: 100%;padding:20px">
-                            <div style="color: white;font-size: 23px;height: 80px">
-                                You did something wrong, so I am going to punish you
-                            </div>
-                            <div style="display: flex;padding-top: 10px">
-                                <img src="../img/message-red-1.png" style="width: 20px;height: 20px">
-                                <span style="font-size: 15px;color: white;padding-left: 10px">three days ago</span>
-                            </div>
-                        </div>
-                        <div style="padding: 45px 20px 0px 10px">
-                            <img src="../img/message-red-2.png" style="width: 45px;">
-                        </div>
-                    </div>
-                    <div class="message-blue">
-                        <div style="padding: 40px 15px 0px 15px">
-                            <img src="../img/message-blue-0.png" style="width: 60px;">
-                        </div>
-                        <div style="width: 100%;padding:20px">
-                            <div style="color: white;font-size: 23px;height: 80px">
-                                You did something wrong, so I am going to punish you
-                            </div>
-                            <div style="display: flex;padding-top: 10px">
-                                <img src="../img/message-blue-1.png" style="width: 20px;height: 20px">
-                                <span style="font-size: 15px;color: white;padding-left: 10px">three days ago</span>
-                            </div>
-                        </div>
-                        <div style="padding: 45px 20px 0px 10px">
-                            <img src="../img/message-blue-2.png" style="width: 45px;">
-                        </div>
-                    </div>
-                    <div class="message-green">
-                        <div style="padding: 40px 15px 0px 15px">
-                            <img src="../img/message-green-0.png" style="width: 60px;">
-                        </div>
-                        <div style="width: 100%;padding:20px">
-                            <div style="color: white;font-size: 23px;height: 80px">
-                                You did something wrong, so I am going to punish you
-                            </div>
-                            <div style="display: flex;padding-top: 10px">
-                                <img src="../img/message-green-1.png" style="width: 20px;height: 20px">
-                                <span style="font-size: 15px;color: white;padding-left: 10px">three days ago</span>
-                            </div>
-                        </div>
-                        <div style="padding: 45px 20px 0px 10px">
-                            <img src="../img/message-green-2.png" style="width: 45px;">
-                        </div>
-                    </div>
+            </div>
+            <div id="menu-buildings" style="cursor:pointer;padding: 3%">
+                <img src="../img/13.png" class="menu-img">
+                <div style="margin-left: 15%">
+                    <p class="menu-h1">Buildings</h1>
+                    <p class="menu-h4">GreenTower, Expo Bulevard, Prime</h4>
+                </div>
+            </div>
+            <div id="menu-settings" style="cursor:pointer;padding: 3%">
+                <img src="../img/14.png" class="menu-img">
+                <div style="margin-left: 15%">
+                    <p class="menu-h1">Settings</h1>
+                    <p class="menu-h4">About us, manual, rate us</h4>
+                </div>
+            </div>
+            <div id="menu-home" style="cursor:pointer;padding: 3%">
+                <img src="../img/15.png" class="menu-img">
+                <div style="margin-left: 15%">
+                    <p class="menu-h1">Home page</h1>
+                    <p class="menu-h4">Go back to home page</h4>
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="../cordova.js"></script>
-        <script type="text/javascript" src="../js/index.js"></script>
-        <style>
+    </div>
+</div>
+<div class="enabled" style = "width:100%; height:100%;margin:0px">
+    <img src="../img/home-header.png" style = "width:100%;height: 20%;"></img>
+    <img id="enabled-menu" src="../img/menu.png" style = "cursor:pointer;position:absolute;right:5%;top:12%;width:9%;"></img>
+    <div style = "width:100%; height:80%;background:rgb(54,54,54);">
+        <div style = "border-bottom-style: solid;display: flex; border-bottom-width: 1.5px; border-bottom-color: gray">
+            <div style="width: 30%"></div>
+            <div style="width: 40%">
+                <p class="header-title">Messages</p>
+            </div>
+            <div style="width: 30%;position: relative;">
+                <p id="messages-all" style="text-align: center;width: 100%;" class="header-small-title">CLEAR ALL</p>
+            </div>
+        </div>
+        <div>
+            <div id="messages-red" class="message-red">
+                <div style="padding: 40px 15px 0px 15px">
+                    <img src="../img/message-red-0.png" style="width: 60px;">
+                </div>
+                <div id="messages-red-inner"style="width: 100%;padding:20px">
+                    <div style="color: white;font-size: 23px;height: 80px">
+                        You did something wrong,
+                    </div>
+                    <div style="display: flex;padding-top: 10px">
+                        <img src="../img/message-red-1.png" style="width: 20px;height: 20px">
+                        <span style="font-size: 15px;color: white;padding-left: 10px">three days ago</span>
+                    </div>
+                </div>
+                <div style="padding: 45px 20px 0px 10px">
+                    <img id="messages-red-close" src="../img/message-red-2.png" style="width: 45px;">
+                </div>
+            </div>
+            <div id="messages-blue" class="message-blue">
+                <div style="padding: 40px 15px 0px 15px">
+                    <img src="../img/message-blue-0.png" style="width: 60px;">
+                </div>
+                <div style="width: 100%;padding:20px">
+                    <div style="color: white;font-size: 23px;height: 80px">
+                        You did something wrong,
+                    </div>
+                    <div style="display: flex;padding-top: 10px">
+                        <img src="../img/message-blue-1.png" style="width: 20px;height: 20px">
+                        <span style="font-size: 15px;color: white;padding-left: 10px">three days ago</span>
+                    </div>
+                </div>
+                <div style="padding: 45px 20px 0px 10px">
+                    <img id="messages-blue-close" src="../img/message-blue-2.png" style="width: 45px;">
+                </div>
+            </div>
+            <div id="messages-green" class="message-green">
+                <div style="padding: 40px 15px 0px 15px">
+                    <img src="../img/message-green-0.png" style="width: 60px;">
+                </div>
+                <div style="width: 100%;padding:20px">
+                    <div style="color: white;font-size: 23px;height: 80px">
+                        You did something wrong,
+                    </div>
+                    <div style="display: flex;padding-top: 10px">
+                        <img src="../img/message-green-1.png" style="width: 20px;height: 20px">
+                        <span style="font-size: 15px;color: white;padding-left: 10px">three days ago</span>
+                    </div>
+                </div>
+                <div style="padding: 45px 20px 0px 10px">
+                    <img id="messages-green-close" src="../img/message-green-2.png" style="width: 45px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-2.1.0.min.js"></script>
+<script src="../js/app.js"></script>
+<script type="text/javascript" src="../cordova.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<style>
             .building-img{
                 margin:3%;width:43.4%;
             }
         </style>
-    </body>
+</body>
 </html>

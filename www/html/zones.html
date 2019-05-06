@@ -1,24 +1,63 @@
 <html>
     <head>
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <link rel="stylesheet" type="text/css" href="../css/common.css">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="../css/common.css"> 
         <title>Zones</title>
     </head>
     <body class = "body" style = "margin:0px">
+        <div id="menutop" style="display:none;z-index:1111;position:absolute;width:100%;height:100%">
+            <div style="position:absolute;bottom:0;z-index:100;background:black;opacity:0.8;width:100%;height: 100%">
+            <div style="position:absolute;bottom:.8%;z-index:100;background:rgb(54,54,54);width:95%;border-radius: 2rem; margin-left:2.5%;margin-right:2.5%">
+                <div style= "border-bottom-style: solid; border-bottom-width: 1.5px; border-bottom-color: gray">
+                    <h1 class="menu-h">MENU</h1>
+                    <img id="menutop-close" src="../img/11.png" style="position:absolute;cursor:pointer;right:9%;top:8%;width:9%;">
+                </div>
+                <div id="menu-messages" style="cursor:pointer;padding: 3%">
+                    <img src="../img/12.png" class="menu-img">
+                    <div style="margin-left: 15%">
+                        <p class="menu-h1">Messagges</h1>
+                        <p class="menu-h4">You have  three unlread images</h4>
+                    </div>
+                </div>
+                <div id="menu-buildings" style="cursor:pointer;padding: 3%">
+                    <img src="../img/13.png" class="menu-img">
+                    <div style="margin-left: 15%">
+                        <p class="menu-h1">Buildings</h1>
+                        <p class="menu-h4">GreenTower, Expo Bulevard, Prime</h4>
+                    </div>
+                </div>
+                <div id="menu-settings" style="cursor:pointer;padding: 3%">
+                    <img src="../img/14.png" class="menu-img">
+                    <div style="margin-left: 15%">
+                        <p class="menu-h1">Settings</h1>
+                        <p class="menu-h4">About us, manual, rate us</h4>
+                    </div>
+                </div>
+                <div id="menu-home" style="cursor:pointer;padding: 3%">
+                    <img src="../img/15.png" class="menu-img">
+                    <div style="margin-left: 15%">
+                        <p class="menu-h1">Home page</h1>
+                        <p class="menu-h4">Go back to home page</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
         <div class="zones" style = "width:100%; height:100%;margin:0px">
-            <img src="../img/home-header.png" style = "width:100%;"></img>
-            <img src="../img/menu.png" style = "cursor:pointer;position:absolute;right:5%;top:12%;width:9%;"></img>
+            <img src="../img/home-header.png" style = "width:100%;height: 20%;"></img>
+            <img id="enabled-menu" src="../img/menu.png" style = "cursor:pointer;position:absolute;right:5%;top:12%;width:9%;"></img>
             <div style = "width:100%; height:80%;background:rgb(54,54,54);">
                 <div style = "border-bottom-style: solid; border-bottom-width: 1.5px; border-bottom-color: gray">
                     <p class="header-title">Green Tower</p>
                 </div>
 
-                <div style="cursor:pointer;padding: 0% 3% 0 3%; display:flex; width:94%" >
-                    <img src="../img/zones-1.png" class="zone-img">
-                    <div style="margin-left: 0%; width:85%">
+                <div style="cursor:pointer;padding: 0% 3% 0 3%; display:flex; width:94%">
+                    <div style="width:15%;margin: 3%;">
+                        <img src="../img/zones-2.png" class="zone-img">    
+                    </div>
+                    <div style="margin-left: 0%; width:85%;margin-top: 1%;">
                         <p class="zone-h1">Reception</h1>
                         <div style = "width:100%">
                             <img src="../img/zones-3.png" class="zone-innerimg"></img>
@@ -27,51 +66,69 @@
                     </div>
                 </div>   
 
-                <div style="cursor:pointer;padding: 0% 3% 0 3%; display:flex; width:94%" >
-                    <img src="../img/zones-2.png" class="zone-img">
-                    <div style="margin-left: 0%; width:85%">
-                        <p class="zone-h1">1st floor</h1>
-                        <div style = "width:100%">
-                            <img src="../img/zones-3.png" class="zone-innerimg"></img>
-                            <span class="zone-h4">Two days</span>
-                        </div>
+                <div style="cursor:pointer;padding: 0% 3% 0 3%; display:flex; width:94%">
+                    <div style="width:15%;margin: 3%;">
+                        <img src="../img/zones-1.png" class="zone-img">    
                     </div>
-                </div>   
-
-                <div style="cursor:pointer;padding: 0% 3% 0 3%; display:flex; width:94%" >
-                    <img src="../img/zones-1.png" class="zone-img">
-                    <div style="margin-left: 0%; width:85%">
-                        <p class="zone-h1">2nd floor</h1>
+                    <div style="margin-left: 0%; width:85%;margin-top: 1%;">
+                        <p class="zone-h1">Reception</h1>
                         <div style = "width:100%">
                             <img src="../img/zones-3.png" class="zone-innerimg"></img>
                             <span class="zone-h4">One year</span>
                         </div>
                     </div>
-                </div>   
+                </div> 
 
-                <div style="cursor:pointer;padding: 0% 3% 0 3%; display:flex; width:94%" >
-                    <img src="../img/zones-2.png" class="zone-img">
-                    <div style="margin-left: 0%; width:85%">
+                <div style="cursor:pointer;padding: 0% 3% 0 3%; display:flex; width:94%">
+                    <div style="width:15%;margin: 3%;">
+                        <img src="../img/zones-2.png" class="zone-img">    
+                    </div>
+                    <div style="margin-left: 0%; width:85%;margin-top: 1%;">
+                        <p class="zone-h1">Reception</h1>
+                        <div style = "width:100%">
+                            <img src="../img/zones-3.png" class="zone-innerimg"></img>
+                            <span class="zone-h4">One year</span>
+                        </div>
+                    </div>
+                </div> 
+
+                <div style="cursor:pointer;padding: 0% 3% 0 3%; display:flex; width:94%">
+                    <div style="width:15%;margin: 3%;">
+                        <img src="../img/zones-1.png" class="zone-img">    
+                    </div>
+                    <div style="margin-left: 0%; width:85%;margin-top: 1%;">
                         <p class="zone-h1">Dining room</h1>
                         <div style = "width:100%">
                             <img src="../img/zones-3.png" class="zone-innerimg"></img>
-                            <span class="zone-h4">Two days</span>
+                            <span class="zone-h4">One year</span>
                         </div>
                     </div>
-                </div>   
+                </div> 
 
-                <div style="cursor:pointer;padding: 0% 3% 0 3%; display:flex; width:94%" >
-                    <img src="../img/zones-1.png" class="zone-img">
-                    <div style="margin-left: 0%; width:85%">
+                <div style="cursor:pointer;padding: 0% 3% 0 3%; display:flex; width:94%">
+                    <div style="width:15%;margin: 3%;">
+                        <img src="../img/zones-2.png" class="zone-img">    
+                    </div>
+                    <div style="margin-left: 0%; width:85%;margin-top: 1%;">
                         <p class="zone-h1">Server room</h1>
                         <div style = "width:100%">
                             <img src="../img/zones-3.png" class="zone-innerimg"></img>
                             <span class="zone-h4">Less than 2 weeks</span>
                         </div>
                     </div>
-                </div>   
+                </div> 
         </div>
         <script type="text/javascript" src="../cordova.js"></script>
         <script type="text/javascript" src="../js/index.js"></script>
+        <script src="../js/jquery-2.1.0.min.js"></script>
+        <script src="../js/app.js"></script>
+        <script src="../js/bootstrap.min.js"></script> 
+
+        <style type="text/css">
+            .zone-img{
+                margin:2%;
+                width: 100%
+            }
+        </style>
     </body>
 </html>
