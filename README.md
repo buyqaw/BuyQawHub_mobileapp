@@ -236,7 +236,7 @@ Page to change profile. Profile change has to be accepted form the server, so it
 
 ## Sequence diagram
 
-![](https://i.imgur.com/OZzPbZm.png)
+![](https://imgur.com/cohMxBG)
 
 
 ### Sequence diagram code
@@ -256,10 +256,11 @@ fontawesome f187 AppStore #1da102
 
 loop Door opening
 MobileApp-->Controller: Advertize BLE peripheral
-note over MobileApp: Characteristics of \nthe ble peripheral is:\n1. Service UUID = "BA10"\n2. CHECK_UUID = "BA52" Checking [WRITE]\n3. PASSWD_PORT_UUID = "BA44" Enter password [NOTIFY]\n4. ADMIN_PORT_UUID = "BA13" Admin settings [NOTIFY]\n5. ACTION_PORT_UUID = "BA87" Give order [NOTIFY]\n6. INCOMING_PORT_UUID = "BA76" Input for controller [WRITE]\n7. FILLER_0 = "BA66" Non coding filler [NOTIFY]\n8. FILLER_1 = "BA91" Non coding filler [NOTIFY]\n9. FILLER_2 = "BA01" Non coding filler [NOTIFY]\n10. FILLER_3 = "BA28" Non coding filler [NOTIFY]
+note over MobileApp: Characteristics of \nthe ble peripheral is:\n1. Service UUID = "BA10"\n2. PORT_UUID = "BA52" Checking [WRITE, READ, NOTIFY]
 Controller-->MobileApp: Connect
 note left of Controller: When user is near door with\ncontoller, controller connects\nto ble peripheral in mobile\napp and sends mac address\nto it in form:\n80:e6:50:02:a3:9a 
 Controller->MobileApp: Write to CHECK_UUID:\n 80:e6:50:02:a3:9a
+MobileApp->TCPServer: a/*56303h43;80:e6:50:02:a3:9a;
 MobileApp->MobileApp: Check local storage
 alt No password in local storage
 MobileApp->TCPServer: a/?56303h43;80:e6:50:02:a3:9a;
@@ -271,8 +272,12 @@ TCPServer->MobileApp: a/0;0;
 MobileApp->TCPServer: a/!0;0;
 end
 end
-MobileApp->Controller:PASSWD_PORT_UUID as NOTIFY:\n123456
-Controller->MobileApp: INCOMING_PORT_UUID:\n1
+MobileApp->Controller:PORT_UUID as NOTIFY:\n123456
+Controller->MobileApp: PORT_UUID_UUID:\n1
+alt Incorrect
+Controller->MobileApp:PORT_UUID:\n0
+Controller-->MobileApp: Disconnect
+end
 opt Password change
 MobileApp->TCPServer:e/?80:e6:50:02:a3:9a
 TCPServer->MobileApp:e/654321
@@ -280,11 +285,13 @@ alt No change
 TCPServer->MobileApp:e/!
 MobileApp->TCPServer:e/!
 end
-MobileApp->Controller:ADMIN_PORT_UUID as NOTIFY:\n654321
-Controller->MobileApp:INCOMING_PORT_UUID:\n654321
+MobileApp->Controller:PORT_UUID_UUID as NOTIFY:\n2
+Controller->MobileApp:PORT_UUID:\n2
+MobileApp->Controller:PORT_UUID as NOTIFY:\n654321
+Controller->MobileApp:PORT_UUID:\n654321
 end
-MobileApp->Controller: ACTION_PORT_UUID as NOTIFY:\n1\n[It means open the door]
-Controller->MobileApp:INCOMING_PORT_UUID:\n1\n[Done]
+MobileApp->Controller: PORT_UUID as NOTIFY:\n1\n[It means open the door]
+Controller->MobileApp:PORT_UUID:\n1\n[Done]
 Controller-->MobileApp: Disconnect
 MobileApp->TCPServer:a/!56303h43;80:e6:50:02:a3:9a;1555666261;
 note left of MobileApp: 1. a/! - control letter\n2. 56303h43 - ID of user\n3. 80:e6:50:02:a3:9a - MAC adress\nof Controller\n4. 1555666261 - Timestamp, when\nuser opened door
