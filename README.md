@@ -236,7 +236,7 @@ Page to change profile. Profile change has to be accepted form the server, so it
 
 ## Sequence diagram
 
-![](https://imgur.com/cohMxBG)
+![](https://i.imgur.com/cohMxBG.png)
 
 
 ### Sequence diagram code
