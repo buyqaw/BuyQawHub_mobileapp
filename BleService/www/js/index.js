@@ -1,45 +1,131 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+// only works for ASCII characters
+function bytesToString(buffer) {
+    return String.fromCharCode.apply(null, new Uint8Array(buffer));
+}
+
+// only works for ASCII characters
+function stringToBytes(string) {
+    var array = new Uint8Array(string.length);
+    for (var i = 0, l = string.length; i < l; i++) {
+        array[i] = string.charCodeAt(i);
+    }
+    return array.buffer;
+}
+
+// Nordic UART Service
+var SERVICE_UUID = '6E400001-B5A3-F393-E0A9-E50E24DCCA9E';
+var TX_UUID = '6E400002-B5A3-F393-E0A9-E50E24DCCA9E';
+var RX_UUID = '6E400003-B5A3-F393-E0A9-E50E24DCCA9E';
+
+// Nordic UART Service
+var SERVICE_UUID = 'BA10';  //PORT BA52
+var TX_UUID = '00F0';
+var RX_UUID = '00F1';
+var update = []
+
 var app = {
     // Application Constructor
     initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        this.bindEvents();
     },
-
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
     onDeviceReady: function() {
-        this.receivedEvent('deviceready');
+        blePeripheral.onWriteRequest(app.didReceiveWriteRequest);
+        blePeripheral.onBluetoothStateChange(app.onBluetoothStateChange);
+
+        // 2 different ways to create the service: API calls or JSON
+        //app.createService();
+        app.createServiceJSON();
+
     },
+    createService: function() {
+        // https://learn.adafruit.com/introducing-the-adafruit-bluefruit-le-uart-friend/uart-service
+        // Characteristic names are assigned from the point of view of the Central device
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+        var property = blePeripheral.properties;
+        var permission = blePeripheral.permissions;
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        Promise.all([
+            blePeripheral.createService(SERVICE_UUID),
+            blePeripheral.addCharacteristic(SERVICE_UUID, TX_UUID, property.WRITE, permission.WRITEABLE),
+            blePeripheral.addCharacteristic(SERVICE_UUID, RX_UUID, property.READ | property.NOTIFY, permission.READABLE),
+            blePeripheral.publishService(SERVICE_UUID),
+            blePeripheral.startAdvertising(SERVICE_UUID, 'UART')
+        ]).then(() =>{
+            console.log ('Created UART Service');
+        });
 
-        console.log('Received Event: ' + id);
+        blePeripheral.onWriteRequest(app.didReceiveWriteRequest);
+    },
+    createServiceJSON: function() {
+        // https://learn.adafruit.com/introducing-the-adafruit-bluefruit-le-uart-friend/uart-service
+        // Characteristic names are assigned from the point of view of the Central device
+
+        var property = blePeripheral.properties;
+        var permission = blePeripheral.permissions;
+
+        var uartService = {
+            uuid: SERVICE_UUID,
+            characteristics: [
+                {
+                    uuid: TX_UUID,
+                    properties: property.WRITE,
+                    permissions: permission.WRITEABLE,
+                    descriptors: [
+                        {
+                            uuid: '2901',
+                            value: 'Transmit'
+                        }
+                    ]
+                },
+                {
+                    uuid: RX_UUID,
+                    properties: property.READ | property.NOTIFY,
+                    permissions: permission.READABLE,
+                    descriptors: [
+                        {
+                            uuid: '2901',
+                            value: 'Receive'
+                        }
+                    ]
+                }
+            ]
+        };
+
+        Promise.all([
+            blePeripheral.createServiceFromJSON(uartService),
+            blePeripheral.startAdvertising(uartService.uuid, 'UART')
+        ]).then(() => {
+            console.log ('Created UART Service');
+        });
+    },
+    updateCharacteristicValue: function() {
+        var input = document.querySelector('input');
+        var bytes = stringToBytes(input.value);
+
+        var success = function() {
+            outputDiv.innerHTML += messageInput.value + '<br/>';
+            console.log('Updated RX value to ' + input.value);
+        };
+        var failure = function() {
+            console.log('Error updating RX value.');
+        };
+
+        blePeripheral.setCharacteristicValue(SERVICE_UUID, RX_UUID, bytes).
+            then(success, failure);
+
+    },
+    didReceiveWriteRequest: function(request) {
+        var message = bytesToString(request.value);
+        console.log(message);
+        // warning: message should be escaped to avoid javascript injection
+        outputDiv.innerHTML += '<i>' + message + '</i><br/>';
+    },
+    onBluetoothStateChange: function(state) {
+        console.log('Bluetooth State is', state);
+        outputDiv.innerHTML += 'Bluetooth  is ' +  state + '<br/>';
     }
 };
 
